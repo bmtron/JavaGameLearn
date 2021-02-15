@@ -7,6 +7,18 @@ public abstract class GameObject {
     protected int x, y;
     protected ID id;
     protected int velX, velY;
+    public boolean jumping = false;
+
+    protected boolean jumpingUp = false;
+    protected boolean jumpingDown = false;
+    protected int totalJumpTicks = 0;
+
+
+    protected int CONST_PLAYER_JUMP_TICKS = 10;
+    protected int CONST_PLAYER_JUMP_ACCEL = -1;
+    protected int CONST_PLAYER_JUMP_DECEL = 1;
+
+    protected int CONST_BASE_VEL = 10;
 
     public GameObject(int x, int y, ID id) {
         this.x = x;
@@ -15,6 +27,7 @@ public abstract class GameObject {
     }
 
     public abstract void tick();
+    public abstract void jumpTick();
     public abstract void render(Graphics g);
 
     public void setX(int x) {
@@ -55,6 +68,10 @@ public abstract class GameObject {
 
     public int getVelY() {
         return velY;
+    }
+
+    public void setJumping() {
+        this.jumping = !this.jumping;
     }
 
 }
